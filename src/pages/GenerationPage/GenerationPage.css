@@ -10,6 +10,13 @@
   margin-bottom: 20px;
 }
 
+.generation-text {
+  max-width: 600px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  text-align: center;
+}
+
 .generation-form {
   width: 100%;
   margin-bottom: 20px;

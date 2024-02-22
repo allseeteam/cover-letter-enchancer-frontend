@@ -3,11 +3,11 @@ import './Footer.css';
 
 export const Footer: React.FC = () => {
   return (
-    <footer
-        className={'footer'}
-    >
-      <p>Contact us at: <a href="mailto:info@allseellc.com">info@allseellc.com</a></p>
-      <p>Copyright © {new Date().getFullYear()} ALL SEE LLC. All rights reserved.</p>
-    </footer>
+      <footer
+          className={'footer'}
+      >
+        <p>© ООО «Алл Сии» {new Date().getFullYear()}</p>
+        <p>Наши контакты: <a href="mailto:info@allsee.team">info@allsee.team</a></p>
+      </footer>
   );
 };
