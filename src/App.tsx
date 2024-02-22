@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { LandingPage, GenerationPage } from "./pages";
 import { Footer } from "./components";
+import './App.css';
 
 const App: React.FC = () => {
     return (

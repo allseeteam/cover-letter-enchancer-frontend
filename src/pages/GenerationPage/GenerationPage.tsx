@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { GeneratedLetterResponce } from "../types";
+import { GeneratedLetterResponce } from "../../types";
+import './GenerationPage.css';
 
 export const GenerationPage: React.FC = () => {
   const [template, setTemplate] = useState('');
@@ -25,32 +26,33 @@ export const GenerationPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Generate Your Letter</h2>
-      <input
-          type="text"
+    <div className={'generation-container'}>
+      <h2 className={'generation-header'}>Generate Your Letter</h2>
+      <textarea
+          className={'generation-input'}
           placeholder="Letter Template"
           value={template}
           onChange={(e) => setTemplate(e.target.value)}
       />
-      <input
-          type="text"
+      <textarea
+          className={'generation-input'}
           placeholder="Resume"
           value={resume}
           onChange={(e) => setResume(e.target.value)}
       />
-      <input
-          type="text"
+      <textarea
+          className={'generation-input'}
           placeholder="Job Description"
           value={jobDescription}
           onChange={(e) => setJobDescription(e.target.value)}
       />
       <button
+          className={'generation-button'}
           onClick={handleGenerate}
       >
           Generate
       </button>
-      <div>
+      <div className={'generation-result'}>
         <h3>Generated Letter:</h3>
         <p>{generatedLetter}</p>
       </div>

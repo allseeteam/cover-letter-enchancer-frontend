@@ -1,0 +1,36 @@
+.landing-container {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.landing-header {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.landing-button {
+  background-color: #ffa500;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.landing-button:hover {
+  background-color: #cc8400;
+}
+
+.landing-text {
+  max-width: 600px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}

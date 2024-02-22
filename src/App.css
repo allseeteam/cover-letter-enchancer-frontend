@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  min-height: calc(100vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.landing-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+a {
+  color: #ffa500;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
