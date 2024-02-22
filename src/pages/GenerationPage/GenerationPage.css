@@ -46,6 +46,7 @@
 }
 
 .generation-button {
+  min-width: 140px;
   background-color: #ffa500;
   color: #1a1a1a;
   border: none;
@@ -57,6 +58,21 @@
 
 .generation-button:hover {
   background-color: #cc8400;
+}
+
+.generation-button:disabled {
+  min-width: 140px;
+  background-color: #666;
+  color: #ccc;
+  cursor: not-allowed;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+
+.generation-button:disabled:hover {
+  background-color: #666;
 }
 
 .loading-spinner {
