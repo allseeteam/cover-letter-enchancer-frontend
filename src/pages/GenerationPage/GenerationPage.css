@@ -1,11 +1,8 @@
 .generation-container {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 20px;
+  padding: 50px;
 }
 
 .generation-header {
@@ -15,7 +12,6 @@
 
 .generation-form {
   width: 100%;
-  max-width: 600px;
   margin-bottom: 20px;
 }
 
@@ -38,11 +34,15 @@
 .generation-input::-webkit-scrollbar-thumb {
   background-color: #ffa500;
   border-radius: 10px;
-  border: 3px solid #1a1a1a;
+  border: 3px solid #2e2e2e;
 }
 
 .generation-input::-webkit-scrollbar {
   width: 8px;
+}
+
+.generation-input::-webkit-scrollbar-corner {
+    background-color: #2e2e2e ;
 }
 
 .generation-button {
@@ -59,11 +59,35 @@
   background-color: #cc8400;
 }
 
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #ffa500;
+  animation: spin 1s ease infinite;
+  margin-top: 70px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .generation-result {
   background-color: #262626;
   color: #ffffff;
   padding: 20px;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 50px;
+  width: 50%;
   white-space: pre-line;
+}
+
+.generation-result h3 {
+  text-align: center;
 }

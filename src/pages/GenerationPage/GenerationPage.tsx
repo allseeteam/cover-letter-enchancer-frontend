@@ -7,8 +7,10 @@ export const GenerationPage: React.FC = () => {
   const [resume, setResume] = useState('');
   const [jobDescription, setJobDescription] = useState('');
   const [generatedLetter, setGeneratedLetter] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
 
   const handleGenerate = async () => {
+      setIsLoading(true); // Start loading
       const response = await fetch(
             'http://localhost:8000/generate_letter/',
             {
@@ -23,6 +25,7 @@ export const GenerationPage: React.FC = () => {
         );
         const data: GeneratedLetterResponce = await response.json();
         setGeneratedLetter(data.generated_letter);
+        setIsLoading(false);
   };
 
   return (
@@ -52,10 +55,15 @@ export const GenerationPage: React.FC = () => {
       >
           Generate
       </button>
-      <div className={'generation-result'}>
-        <h3>Generated Letter:</h3>
-        <p>{generatedLetter}</p>
-      </div>
+      {isLoading ? (
+          <div className="loading-spinner"></div> // Use the spinner when loading
+        ) : generatedLetter ? (
+          <div className={'generation-result'}>
+            <h3>Generated Letter</h3>
+            <br/>
+            <p>{generatedLetter}</p>
+          </div>
+        ) : null}
     </div>
   );
 };
