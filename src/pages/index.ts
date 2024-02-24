@@ -1,2 +1,2 @@
-export * from './LandingPage/LandingPage';
-export * from './GenerationPage/GenerationPage';
+export * from './LandingPage/LandingPage.tsx';
+export * from './GenerationPage/GenerationPage.tsx';
