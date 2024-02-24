@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GeneratedLetterResponce } from "../../types";
 import './GenerationPage.css';
+import {wait} from "@testing-library/user-event/dist/utils";
 
 export const GenerationPage: React.FC = () => {
   const [template, setTemplate] = useState('');
@@ -11,21 +12,27 @@ export const GenerationPage: React.FC = () => {
 
   const handleGenerate = async () => {
       setIsLoading(true);
-      const response = await fetch(
-            'http://localhost:8000/generate_letter/',
-            {
-                method: 'POST',
-                body: JSON.stringify({
-                    letter_template: template,
-                    resume: resume,
-                    job_description: jobDescription
-                }),
-                headers: { 'Content-Type': 'application/json' }
-            }
-        );
-        const data: GeneratedLetterResponce = await response.json();
-        setGeneratedLetter(data.generated_letter);
-        setIsLoading(false);
+      try {
+          const response = await fetch(
+                'http://localhost:8000/generate_letter/',
+                {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        letter_template: template,
+                        resume: resume,
+                        job_description: jobDescription
+                    }),
+                    headers: { 'Content-Type': 'application/json' }
+                }
+            );
+            const data: GeneratedLetterResponce = await response.json();
+            setGeneratedLetter(data.generated_letter);
+      } catch (error) {
+          await wait(3000);
+          console.error("An error occurred:", error);
+      } finally {
+          setIsLoading(false);
+      }
   };
 
   const fillWithExample = () => {
