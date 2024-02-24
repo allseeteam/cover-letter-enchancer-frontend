@@ -13,8 +13,9 @@ export const GenerationPage: React.FC = () => {
   const handleGenerate = async () => {
       setIsLoading(true);
       try {
+          const apiUrl: string | undefined = process.env.REACT_APP_API_URL;
           const response = await fetch(
-                'http://localhost:8000/generate_letter/',
+                `${apiUrl}/generate_letter/`,
                 {
                     method: 'POST',
                     body: JSON.stringify({
