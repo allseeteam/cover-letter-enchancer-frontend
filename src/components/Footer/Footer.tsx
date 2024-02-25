@@ -6,8 +6,11 @@ export const Footer: React.FC = () => {
       <footer
           className={'footer'}
       >
-        <p>© ООО «Алл Сии» {new Date().getFullYear()}</p>
-        <p>Наши контакты: <a href="mailto:info@allsee.team">info@allsee.team</a></p>
+          <footer className={'footer'}>
+              <p>© ООО «Алл Сии» {new Date().getFullYear()}</p>
+              <p>Наш основной сайт: <a href="https://allsee.team/">allsee.team</a></p>
+              <p>Наш Telegram: <a href="https://t.me/allseeteam">t.me/allseeteam</a></p>
+          </footer>
       </footer>
   );
 };

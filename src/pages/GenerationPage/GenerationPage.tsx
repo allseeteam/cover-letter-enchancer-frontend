@@ -8,18 +8,22 @@ export const GenerationPage: React.FC = () => {
   const [resume, setResume] = useState('');
   const [jobDescription, setJobDescription] = useState('');
   const [generatedLetter, setGeneratedLetter] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Added loading state
+  const [isLoading, setIsLoading] = useState(false);
+  const [showTemplate, setShowTemplate] = useState(false);
+
+  const toggleTemplateVisibility = () => setShowTemplate(!showTemplate);
 
   const handleGenerate = async () => {
       setIsLoading(true);
       try {
           const apiUrl: string | undefined = process.env.REACT_APP_API_URL;
+          const templateToSend = template || "{placeholder}";
           const response = await fetch(
                 `${apiUrl}/generate_letter/`,
                 {
                     method: 'POST',
                     body: JSON.stringify({
-                        letter_template: template,
+                        letter_template: templateToSend,
                         resume: resume,
                         job_description: jobDescription
                     }),
@@ -154,47 +158,43 @@ export const GenerationPage: React.FC = () => {
           '\n' +
           'С нетерпением жду возможности внести свой вклад в ваш проект и команду!\n'
       );
-      setTemplate(
-          'Добрый день!\n' +
-          '\n' +
-          'Меня зовут Анна Иванова.\n' +
-          '\n' +
-          'Я с большим интересом ознакомилась с вашей вакансией на должность ML инженера. Ваше описание позиции и перечень задач говорят о том, что передо мной стоят масштабные и вызовные проекты, которые полностью соответствуют моим профессиональным интересам и областям экспертизы:\n' +
-          '{placeholder}\n' +
-          '▸ Мой опыт в области машинного обучения и разработке алгоритмов искусственного интеллекта идеально подходит для решения поставленных задач.\n' +
-          '\n' +
-          'Кратко о себе:\n' +
-          '● Я увлечена созданием и оптимизацией алгоритмов машинного обучения, что позволяет мне глубоко понимать и эффективно решать технические задачи.\n' +
-          '● Активно участвую в жизни профессионального сообщества, посещаю конференции и митапы, что помогает мне быть в курсе последних тенденций в области ИИ и машинного обучения.\n' +
-          '● У меня есть успешный опыт участия в хакатонах, где я не только разрабатывала решения, но и работала в команде для достижения общих целей. Например:\n' +
-          '○ AI Journey 2022\n' +
-          '○ Нейронные сети и глубокое обучение - проект по распознаванию эмоций\n' +
-          '\n' +
-          'Я уверена, что мой опыт и навыки позволят мне внести значительный вклад в успех вашей компании. Я готова применить свои знания для решения интересных и сложных задач, стоящих перед вашей командой.\n' +
-          '\n' +
-          'С нетерпением жду возможности обсудить, как я могу помочь вашей команде достигнуть её целей. Связаться со мной можно по электронной почте или через Telegram:\n' +
-          '➜ anna.ai98@example.com\n' +
-          '➜ https://t.me/anna_ai\n' +
-          '\n' +
-          'Благодарю за внимание и надеюсь на скорую встречу!\n' +
-          '\n' +
-          'С уважением,\n' +
-          'Анна Иванова\n'
-      );
+      if (showTemplate) {
+          setTemplate(
+              'Добрый день!\n' +
+              '\n' +
+              'Меня зовут Анна Иванова.\n' +
+              '\n' +
+              'Я с большим интересом ознакомилась с вашей вакансией на должность ML инженера. Ваше описание позиции и перечень задач говорят о том, что передо мной стоят масштабные и вызовные проекты, которые полностью соответствуют моим профессиональным интересам и областям экспертизы:\n' +
+              '{placeholder}\n' +
+              '▸ Мой опыт в области машинного обучения и разработке алгоритмов искусственного интеллекта идеально подходит для решения поставленных задач.\n' +
+              '\n' +
+              'Кратко о себе:\n' +
+              '● Я увлечена созданием и оптимизацией алгоритмов машинного обучения, что позволяет мне глубоко понимать и эффективно решать технические задачи.\n' +
+              '● Активно участвую в жизни профессионального сообщества, посещаю конференции и митапы, что помогает мне быть в курсе последних тенденций в области ИИ и машинного обучения.\n' +
+              '● У меня есть успешный опыт участия в хакатонах, где я не только разрабатывала решения, но и работала в команде для достижения общих целей. Например:\n' +
+              '○ AI Journey 2022\n' +
+              '○ Нейронные сети и глубокое обучение - проект по распознаванию эмоций\n' +
+              '\n' +
+              'Я уверена, что мой опыт и навыки позволят мне внести значительный вклад в успех вашей компании. Я готова применить свои знания для решения интересных и сложных задач, стоящих перед вашей командой.\n' +
+              '\n' +
+              'С нетерпением жду возможности обсудить, как я могу помочь вашей команде достигнуть её целей. Связаться со мной можно по электронной почте или через Telegram:\n' +
+              '➜ anna.ai98@example.com\n' +
+              '➜ https://t.me/anna_ai\n' +
+              '\n' +
+              'Благодарю за внимание и надеюсь на скорую встречу!\n' +
+              '\n' +
+              'С уважением,\n' +
+              'Анна Иванова\n'
+          );
+      }
   };
 
-  const isButtonDisabled = !template || !resume || !jobDescription || isLoading;
+  const isButtonDisabled = !resume || !jobDescription || isLoading;
 
   return (
       <div className={'generation-container'}>
           <h2 className={'generation-header'}>Сгенерировать письмо</h2>
-          <p className={'generation-text'}>Пожалуйста, введите необходимые данные. Для плейсхолдеров в шаблоне сопроводительного письма используйте &#123;placeholder&#125;.</p>
-          <textarea
-              className={'generation-input'}
-              placeholder="Шаблон сопроводительного письма"
-              value={template}
-              onChange={(e) => setTemplate(e.target.value)}
-          />
+          <p className={'generation-text'}>Пожалуйста, введите необходимые данные.</p>
           <textarea
               className={'generation-input'}
               placeholder="Ваше резюме"
@@ -207,10 +207,26 @@ export const GenerationPage: React.FC = () => {
               value={jobDescription}
               onChange={(e) => setJobDescription(e.target.value)}
           />
+          {showTemplate && (
+              <textarea
+                  className={'generation-input'}
+                  placeholder="Шаблон сопроводительного письма (необязательно). Для плейсхолдеров используйте &#123;placeholder&#125;"
+                  value={template}
+                  onChange={(e) => setTemplate(e.target.value)}
+              />
+          )}
+          <button
+              className={'generation-button'}
+              onClick={toggleTemplateVisibility}
+              disabled={isLoading}
+          >
+              {showTemplate ? 'Скрыть шаблон' : 'Показать шаблон'}
+          </button>
           <button
               className={'generation-button'}
               onClick={fillWithExample}
-              disabled={!isButtonDisabled || isLoading}
+              // @ts-ignore
+              disabled={isLoading || (!isButtonDisabled && !showTemplate) || (!isButtonDisabled && showTemplate && template)}
           >
               Пример данных
           </button>
@@ -225,7 +241,7 @@ export const GenerationPage: React.FC = () => {
               <div className="loading-spinner"></div> // Use the spinner when loading
           ) : generatedLetter ? (
               <div className={'generation-result'}>
-                  <h3>Generated Letter</h3>
+                  <h3>Сгенерированное письмо</h3>
                   <br/>
                   <p>{generatedLetter}</p>
               </div>

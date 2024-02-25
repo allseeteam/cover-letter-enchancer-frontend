@@ -15,10 +15,10 @@ COPY . .
 RUN npm run build
 
 
-FROM nginx:alpine as production-stage
+FROM httpd:alpine as production-stage
 
-COPY --from=build-stage /app/build /usr/share/nginx/html
+COPY --from=build-stage /app/build /usr/local/apache2/htdocs/
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["httpd-foreground"]

@@ -53,7 +53,7 @@
 }
 
 .generation-button {
-  min-width: 140px;
+  min-width: 150px;
   background-color: #ffa500;
   color: #1a1a1a;
   border: none;
@@ -68,7 +68,7 @@
 }
 
 .generation-button:disabled {
-  min-width: 140px;
+  min-width: 150px;
   background-color: #666;
   color: #ccc;
   cursor: not-allowed;
